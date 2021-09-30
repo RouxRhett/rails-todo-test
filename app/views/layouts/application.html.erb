@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html class="h-100">
   <head>
     <title>TodoList</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <style>
+    </style>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="d-flex h-100 text-center text-white bg-dark">
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <%= render template:'layouts/tasks_header' %>
+    <main class="flex-shrink-0">
+    <div class="container">
+      <%= yield %>
+    </div>
+    </main>
+    <%= render template:'layouts/tasks_footer' %>
   </body>
 </html>
