@@ -1,12 +1,15 @@
-<h1><%= @msg %></h1>
+<h1>Task List</h1>
+<%= javascript_pack_tag '/index' %>
+<p><%= @msg %></p>
 <table class="table table-dark table-striped">
   <tr>
-    <th>#</th><th>title</th>
+    <th>#</th><th>title</th><th></th>
   </tr>
   <% @data.each do |obj| %>
   <tr>
     <td><%= obj.id %></td>
     <td><%= link_to(obj.title,"/#{obj.id}",{class:"link-light"})%></td>
+    <td><%= link_to("Edit","/edit/#{obj.id}",{class:"link-light"})%></td>
   </tr>
   <% end %>
 </table>
