@@ -1,11 +1,11 @@
 class TasksController < ApplicationController
   def index
-    @msg = '現在登録されているタスク一覧です。'
+    @msg = 'List'
     @data = Task.all
   end
 
   def show
-    @msg = 'タスクの詳細'
+    @msg = 'Detail'
     @data = Task.find(params[:id])
   end
 end
