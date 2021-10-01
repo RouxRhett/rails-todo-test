@@ -8,4 +8,7 @@ class TasksController < ApplicationController
     @msg = 'Detail'
     @data = Task.find(params[:id])
   end
+
+  def add
+  end
 end
