@@ -9,15 +9,7 @@
     <td><%= obj.id %></td>
     <td><%= link_to(obj.title,"/#{obj.id}",{class:"link-light"})%></td>
     <td><%= link_to("Edit","/edit/#{obj.id}",{class:"link-light"})%></td>
-    <td><%= link_to("Delete","javascript:delData(#{obj.id});",{class:"link-light"})%></td>
+    <td><%= link_to("Delete","/#{obj.id}",class: "link-light" ,method: :delete, data: {confirm: "削除しますか？"})%></td>
   </tr>
   <% end %>
 </table>
-<script>
-  function delData(num){
-    if (confirm('このデータを削除しますか？')){
-      document.location ="/delete/" + num;
-    }
-    return false;
-}
-</script>

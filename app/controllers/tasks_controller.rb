@@ -36,8 +36,11 @@ class TasksController < ApplicationController
 
   def delete
     obj = Task.find(params[:id])
-    obj.destroy
-    redirect_to '/'
+    if obj.destroy
+      redirect_to '/',notice: 'Delete successful'
+    else
+      render :edit
+    end
   end
 
   private
