@@ -1,8 +1,6 @@
 class TasksController < ApplicationController
   def index
     @nav_index = 'active'
-    @nav_add = ''
-    @msg = ''
     @data = Task.all
   end
 
@@ -12,7 +10,6 @@ class TasksController < ApplicationController
   end
 
   def add
-    @nav_index = ''
     @nav_add = 'active'
   end
 
