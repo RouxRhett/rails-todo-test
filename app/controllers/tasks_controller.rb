@@ -10,7 +10,6 @@ class TasksController < ApplicationController
   end
 
   def add
-    @msg ='Added a task.'
   end
 
   def create
@@ -20,7 +19,7 @@ class TasksController < ApplicationController
         content:params['content']
       )
     end
-    redirect_to '/'
+    redirect_to '/',notice: 'Successfully added the task.'
   end
 
   def edit
@@ -31,13 +30,13 @@ class TasksController < ApplicationController
   def update
     obj = Task.find(params[:id])
     obj.update(task_params)
-    redirect_to '/'
+    redirect_to '/',notice: 'Task changes applied.'
   end
 
   def delete
     obj = Task.find(params[:id])
     if obj.destroy
-      redirect_to '/',notice: 'Delete successful'
+      redirect_to '/',notice: 'Deletion completed.' 
     else
       render :edit
     end
