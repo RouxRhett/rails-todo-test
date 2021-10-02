@@ -9,7 +9,7 @@
     <td><%= obj.id %></td>
     <td><%= link_to(obj.title,"/#{obj.id}",{class:"link-light"})%></td>
     <td><%= link_to("Edit","/edit/#{obj.id}",{class:"link-light"})%></td>
-    <td><%= link_to("Delete","/#{obj.id}",class: "link-light" ,method: :delete, data: {confirm: "削除しますか？"})%></td>
+    <td><%= link_to("Delete","/#{obj.id}",class: "link-light" ,method: :delete, data: {confirm: "Delete this task?"})%></td>
   </tr>
   <% end %>
 </table>
