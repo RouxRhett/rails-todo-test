@@ -16,9 +16,14 @@ class TasksController < ApplicationController
 
   def create
     if request.post? then
-      obj = Task.create(task_params)
+      obj = Task.new(task_params)
+      if obj.save
+        redirect_to root_path ,notice: 'Successfully added the task.'
+      else
+        flash.now[:alert] = '[ERROR!!]Failed to add task.'
+        render :add
+      end
     end
-    redirect_to root_path ,notice: 'Successfully added the task.'
   end
 
   def edit
@@ -33,11 +38,15 @@ class TasksController < ApplicationController
   end
 
   def delete
-    obj = Task.find(params[:id])
-    if obj.destroy
-      redirect_to root_path ,notice: 'Deletion completed.' 
+    obj = Task.find_by(id: params[:id])
+    if obj != nil
+      if obj.destroy
+        redirect_to root_path ,notice: 'Deletion completed.' 
+      else
+        redirect_to root_path ,notice: '[ERROR!!]Failed to delete task.'
+      end
     else
-      render :edit
+      redirect_to root_path ,notice: '[ERROR!!]Task not found.'
     end
   end
 
