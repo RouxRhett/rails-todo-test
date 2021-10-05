@@ -25,7 +25,7 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
-    @msg = "edit data.[id = " + @task.id + "]"
+    @msg = "edit data.[id = " + @task.id.to_s + "]"
   end
 
   def update
