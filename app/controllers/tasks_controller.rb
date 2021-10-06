@@ -18,17 +18,17 @@ class TasksController < ApplicationController
     if request.post? then
       obj = Task.new(task_params)
       if 0 < obj[:title].length && 0 < obj[:content].length
-        if 10 >= obj[:title].length || 40 >= obj[:content].length
+        if 10 >= obj[:title].length && 40 >= obj[:content].length
           if obj.save
-            redirect_to root_path ,notice: 'Successfully added the task.'
+            redirect_to root_path, notice: 'Successfully added the task.'
           else
-            redirect_to add_path ,notice: '[ERROR!!]Failed to add task.'
+            redirect_to add_path, notice: '[ERROR!!]Failed to add task.'
           end
         else
-          redirect_to add_path ,notice: '[ERROR!!]The number of characters that can be registered has been exceeded.'
+          redirect_to add_path, notice: '[ERROR!!]The number of characters that can be registered has been exceeded.'
         end
       else
-        redirect_to add_path ,notice: '[ERROR!!]Please enter a character.'
+        redirect_to add_path, notice: '[ERROR!!]Please enter a character.'
       end
     end
   end
@@ -39,21 +39,30 @@ class TasksController < ApplicationController
   end
 
   def update
-    obj = Task.find(params[:id])
-    obj.update(task_params)
-    redirect_to root_path ,notice: 'Task changes applied.'
+    obj = Task.new(task_params)
+    if 0 < obj[:title].length && 0 < obj[:content].length
+      if 10 >= obj[:title].length && 40 >= obj[:content].length
+        obj = Task.find(params[:id])
+        obj.update(task_params)
+        redirect_to root_path, notice: 'Task changes applied.'
+      else
+        redirect_to edit_path, notice: '[ERROR!!]The number of characters that can be registered has been exceeded.'
+      end
+    else
+      redirect_to edit_path, notice: '[ERROR!!]Please enter a character.'
+    end
   end
 
   def delete
     obj = Task.find_by(id: params[:id])
     if obj != nil
       if obj.destroy
-        redirect_to root_path ,notice: 'Deletion completed.' 
+        redirect_to root_path, notice: 'Deletion completed.' 
       else
-        redirect_to root_path ,notice: '[ERROR!!]Failed to delete task.'
+        redirect_to root_path, notice: '[ERROR!!]Failed to delete task.'
       end
     else
-      redirect_to root_path ,notice: '[ERROR!!]Task not found.'
+      redirect_to root_path, notice: '[ERROR!!]Task not found.'
     end
   end
 

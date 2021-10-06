@@ -1,13 +1,13 @@
 <h1>Add Task</h1>
 <p><%= notice %></p>
-<%#<%= form_tag(controller:'tasks',action:'add') do%>
+<%#<%= form_tag(controller:'tasks', action:'add') do%>
 <%= form_with model:@task, url: add_path do |form| %>
   <div class="form-group mb-3 ">
     <%= form.label :title, 'Task Title (1 to 10 characters)' %>
-    <%= form.text_field :title,class:'form-control' %>
+    <%= form.text_field :title, class:'form-control' %>
 
     <%= form.label :content, 'Content (1 to 40 characters)' %>
-    <%= form.text_area :content,class:'form-control' %>
+    <%= form.text_area :content, class:'form-control' %>
     <br>
     <%= form.submit 'submit', class:'btn btn-success form-control' %>
   </div>
