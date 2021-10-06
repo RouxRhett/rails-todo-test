@@ -7,9 +7,9 @@
   <% @data.each do |obj| %>
   <tr>
     <td><%= obj.id %></td>
-    <td><%= link_to(obj.title, show_path(obj.id), {class:"link-light"})%></td>
-    <td><%= link_to("Edit", edit_path(obj.id), {class:"link-light"})%></td>
-    <td><%= link_to("Delete", delete_path(obj.id), class: "link-light", method: :delete, data: {confirm: "Delete this task?"})%></td>
+    <td><%= link_to(obj.title, task_path(obj.id), {class:"link-light"})%></td>
+    <td><%= link_to("Edit", edit_task_path(obj.id), {class:"link-light"})%></td>
+    <td><%= link_to("Delete", task_path(obj.id), class: "link-light", method: :delete, data: {confirm: "Delete this task?"})%></td>
   </tr>
   <% end %>
 </table>

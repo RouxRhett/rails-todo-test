@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     @data = Task.find(params[:id])
   end
 
-  def add
+  def new
     @nav_add = 'active'
     @task = Task.new
   end
@@ -22,13 +22,13 @@ class TasksController < ApplicationController
           if obj.save
             redirect_to root_path, notice: 'Successfully added the task.'
           else
-            redirect_to add_path, notice: '[ERROR!!]Failed to add task.'
+            redirect_to new_task_path, notice: '[ERROR!!]Failed to add task.'
           end
         else
-          redirect_to add_path, notice: '[ERROR!!]The number of characters that can be registered has been exceeded.'
+          redirect_to new_task_path, notice: '[ERROR!!]The number of characters that can be registered has been exceeded.'
         end
       else
-        redirect_to add_path, notice: '[ERROR!!]Please enter a character.'
+        redirect_to new_task_path, notice: '[ERROR!!]Please enter a character.'
       end
     end
   end
@@ -46,14 +46,14 @@ class TasksController < ApplicationController
         obj.update(task_params)
         redirect_to root_path, notice: 'Task changes applied.'
       else
-        redirect_to edit_path, notice: '[ERROR!!]The number of characters that can be registered has been exceeded.'
+        redirect_to edit_task_path, notice: '[ERROR!!]The number of characters that can be registered has been exceeded.'
       end
     else
-      redirect_to edit_path, notice: '[ERROR!!]Please enter a character.'
+      redirect_to edit_task_path, notice: '[ERROR!!]Please enter a character.'
     end
   end
 
-  def delete
+  def destroy
     obj = Task.find_by(id: params[:id])
     if obj != nil
       if obj.destroy

@@ -2,7 +2,7 @@
 <p><%= @msg %></p>
 <p><%= notice %></p>
 <%#<%= form_for(@task, url:{controller:'tasks', action:'update', id:@task.id}) do |form| %>
-<%= form_with model: @task, url: edit_path do |form| %>
+<%= form_with model: @task, url: edit_task_path do |form| %>
   <div class="form-group mb-3 ">
     <%= form.label :title, 'Task Title (1 to 10 characters)' %>
     <%= form.text_field :title, class:'form-control' %>
