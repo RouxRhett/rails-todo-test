@@ -17,11 +17,18 @@ class TasksController < ApplicationController
   def create
     if request.post? then
       obj = Task.new(task_params)
-      if obj.save
-        redirect_to root_path ,notice: 'Successfully added the task.'
+      if 0 < obj[:title].length && 0 < obj[:content].length
+        if 10 >= obj[:title].length || 40 >= obj[:content].length
+          if obj.save
+            redirect_to root_path ,notice: 'Successfully added the task.'
+          else
+            redirect_to add_path ,notice: '[ERROR!!]Failed to add task.'
+          end
+        else
+          redirect_to add_path ,notice: '[ERROR!!]The number of characters that can be registered has been exceeded.'
+        end
       else
-        flash.now[:alert] = '[ERROR!!]Failed to add task.'
-        render :add
+        redirect_to add_path ,notice: '[ERROR!!]Please enter a character.'
       end
     end
   end
