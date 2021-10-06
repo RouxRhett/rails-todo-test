@@ -6,7 +6,10 @@ class TasksController < ApplicationController
 
   def show
     @msg = 'Detail'
-    @data = Task.find(params[:id])
+    @data = Task.find_by(id: params[:id])
+    if @data == nil
+      redirect_to root_path, notice: '[ERROR!!]Unable to view tasks.Task not found.'
+    end
   end
 
   def new
@@ -34,8 +37,12 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
-    @msg = "edit data.[id = " + @task.id.to_s + "]"
+    @task = Task.find_by(id: params[:id])
+    if @task != nil
+      @msg = "edit data.[id = " + @task.id.to_s + "]"
+    else
+      redirect_to root_path, notice: '[ERROR!!]Task not found.'
+    end
   end
 
   def update
@@ -62,7 +69,7 @@ class TasksController < ApplicationController
         redirect_to root_path, notice: '[ERROR!!]Failed to delete task.'
       end
     else
-      redirect_to root_path, notice: '[ERROR!!]Task not found.'
+      redirect_to root_path, notice: '[ERROR!!]Task not found.It may have already been deleted.'
     end
   end
 
